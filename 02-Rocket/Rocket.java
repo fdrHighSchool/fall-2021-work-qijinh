@@ -1,27 +1,30 @@
+import input.until.Scanner
+
 public class Rocket{
   public static void main(String[] args) {
-    First();
-    Second();
-    Third();
-    Second();
-    First();
+    Scanner input = new Scanner(System.in);
+    String country;
+
+    System.out.println("What's your country?");
+    country=Scanner input;
+
+    triangle();
+    box1();
+    box2();
+    box1();
+    triangle();
   }
 
-  public static void First() {
-    System.out.println("   /\\   ");
-    System.out.println("  /  \\  ");
-    System.out.println(" /    \\ ");
+  public static void triangle() {
+    System.out.println("   /\\\n  /  \\\n /    \\");
   }
 
-   public static void Second() {
-    System.out.println("+______+");
-    System.out.println("|      |");
-    System.out.println("|      |");
-    System.out.println("+______+");
+   public static void box1() {
+    System.out.println("+______+\n|      |\n|      |\n+______+");
    }
 
-   public static void Third() {
-     System.out.println("|United|");
-     System.out.println("|States|");
+   public static void box2() {
+     System.out.println("|      |\n|      |");
    }
+
 }

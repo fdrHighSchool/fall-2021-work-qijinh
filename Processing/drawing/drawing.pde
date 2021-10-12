@@ -77,10 +77,12 @@ void draw(){
   fill(253,235,90,255);
   circle(460, 450, 125);
   
-  
+  //blue circle
+  fill(67,122,142,255);
+  circle(555, 340, 65);
   
   //orangedot circle
-  fill
+  
   
 
   
