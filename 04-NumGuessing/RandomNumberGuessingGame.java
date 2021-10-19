@@ -11,7 +11,7 @@ public class RandomNumberGuessingGame {
         final int MAX2 = 999;
         final int MAX3 = 9999;
         final int MAX4 = 99999999;
-        int max;
+        int MAX;
 
         String play;
         String level;
@@ -22,128 +22,54 @@ public class RandomNumberGuessingGame {
         System.out.println("Would you like to play the Number Guessing? y / n");
         play = s.next();
 
-        System.out.println("What level do you like to play? easy / medium / difficult / hell");
-        level = s.next();
-
-        if (play.equals("y") && level.equals("easy")) {
+        if (play.equals("y")) {
           System.out.println("Game Start!");
-            //code continue if the user enters yes
+          //code continue if the user enters yes
+          System.out.println("What level do you like to play? easy / medium / difficult / hell");
+          level = s.next();
 
-            randomNumber = generator.nextInt(MAX1) + 1;
+            if (level.equals("easy")) {
+              MAX = 99;
+            }
 
-            while (play.equals("y")) {
-              System.out.println("Please pick a number between 1 and 99.");
-              userNumber = s.nextInt();
+            if (level.equals("medium")) {
+              MAX = 999;
+            }
 
-              // guesses correction
-              if (userNumber > randomNumber){
+            if (level.equals("difficult")) {
+              MAX = 9999;
+            }
+
+            if (level.equals("hell")){
+              MAX = 99999999;
+            }
+
+            randomNumber = generator.nextInt(MAX) + 1;
+
+              while (play.equals("y")) {
+                System.out.println("Please pick a number between 1 and " + MAX + " .");
+                userNumber = s.nextInt();
+
+                // guesses correction
+                if (userNumber > randomNumber){
                   System.out.println("Number is too big, try something smaller.");
                 }
 
-              if (userNumber < randomNumber) {
+                if (userNumber < randomNumber) {
                   System.out.println("Number is too small, try something bigger.");
                 }
 
-              if (userNumber == randomNumber) {
+                if (userNumber == randomNumber) {
                   System.out.println("You got it!");
                   System.out.println("You have guessed " + guesses + " times!");
                   System.out.println("Would you like to play again? y / n");
                   play = s.next();
-              }
+                }
                 guesses++;
                 // total guess time
               }
           }
 
-          if (play.equals("y") && level.equals("medium")) {
-            System.out.println("Game Start!");
-              //code continue if the user enters yes
-
-              randomNumber = generator.nextInt(MAX2) + 1;
-
-              while (play.equals("y")) {
-                System.out.println("Please pick a number between 1 and 999.");
-                userNumber = s.nextInt();
-
-                // guesses correction
-                if (userNumber > randomNumber){
-                    System.out.println("Number is too big, try something smaller.");
-                  }
-
-                if (userNumber < randomNumber) {
-                    System.out.println("Number is too small, try something bigger.");
-                  }
-
-                if (userNumber == randomNumber) {
-                    System.out.println("You got it!");
-                    System.out.println("You have guessed " + guesses + " times!");
-                    System.out.println("Would you like to play again? y / n");
-                    play = s.next();
-                }
-                  guesses++;
-                  // total guess time
-                }
-            }
-
-            if (play.equals("y") && level.equals("difficult")) {
-              System.out.println("Game Start!");
-                //code continue if the user enters yes
-
-                randomNumber = generator.nextInt(MAX3) + 1;
-
-                while (play.equals("y")) {
-                  System.out.println("Please pick a number between 1 and 9999.");
-                  userNumber = s.nextInt();
-
-                  // guesses correction
-                  if (userNumber > randomNumber){
-                      System.out.println("Number is too big, try something smaller.");
-                    }
-
-                  if (userNumber < randomNumber) {
-                      System.out.println("Number is too small, try something bigger.");
-                    }
-
-                  if (userNumber == randomNumber) {
-                      System.out.println("You got it!");
-                      System.out.println("You have guessed " + guesses + " times!");
-                      System.out.println("Would you like to play again? y / n");
-                      play = s.next();
-                  }
-                    guesses++;
-                    // total guess time
-                  }
-              }
-
-              if (play.equals("y") && level.equals("hell")) {
-                System.out.println("Game Start!");
-                  //code continue if the user enters yes
-
-                  randomNumber = generator.nextInt(MAX4) + 1;
-
-                  while (play.equals("y")) {
-                    System.out.println("Please pick a number between 1 and 99999999.");
-                    userNumber = s.nextInt();
-
-                    // guesses correction
-                    if (userNumber > randomNumber){
-                        System.out.println("Number is too big, try something smaller.");
-                      }
-
-                    if (userNumber < randomNumber) {
-                        System.out.println("Number is too small, try something bigger.");
-                      }
-
-                    if (userNumber == randomNumber) {
-                        System.out.println("You got it!");
-                        System.out.println("You have guessed " + guesses + " times!");
-                        System.out.println("Would you like to play again? y / n");
-                        play = s.next();
-                    }
-                      guesses++;
-                      // total guess time
-                    }
-                }
 
           else {
             System.out.println("you're no fun...go away!");
