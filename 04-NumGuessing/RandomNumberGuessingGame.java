@@ -7,11 +7,11 @@ public class RandomNumberGuessingGame {
         int randomNumber;
         int userNumber = 0;
         int guesses = 0;
-        final int MAX1 = 99;
-        final int MAX2 = 999;
-        final int MAX3 = 9999;
-        final int MAX4 = 99999999;
-        int MAX;
+        //final int MAX1 = 99;
+        //final int MAX2 = 999;
+        //final int MAX3 = 9999;
+        //final int MAX4 = 99999999;
+        int max;
 
         String play;
         String level;
@@ -29,25 +29,28 @@ public class RandomNumberGuessingGame {
           level = s.next();
 
             if (level.equals("easy")) {
-              MAX = 99;
+              max = 99;
+              randomNumber = generator.nextInt(max) + 1;
             }
 
             if (level.equals("medium")) {
-              MAX = 999;
+              max = 999;
+              randomNumber = generator.nextInt(max) + 1;
             }
 
             if (level.equals("difficult")) {
-              MAX = 9999;
+              max = 9999;
+              randomNumber = generator.nextInt(max) + 1;
             }
 
             if (level.equals("hell")){
-              MAX = 99999999;
+              max = 99999999;
+              randomNumber = generator.nextInt(max) + 1;
             }
 
-            randomNumber = generator.nextInt(MAX) + 1;
 
               while (play.equals("y")) {
-                System.out.println("Please pick a number between 1 and " + MAX + " .");
+                System.out.println("Please pick a number between 1 and " + max + ".");
                 userNumber = s.nextInt();
 
                 // guesses correction
