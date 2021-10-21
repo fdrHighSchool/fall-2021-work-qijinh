@@ -4,14 +4,10 @@ import java.util.Random;
 public class RandomNumberGuessingGame {
 
     public static void main(String[] args) {
-        int randomNumber;
+        int randomNumber = 0;
         int userNumber = 0;
         int guesses = 0;
-        //final int MAX1 = 99;
-        //final int MAX2 = 999;
-        //final int MAX3 = 9999;
-        //final int MAX4 = 99999999;
-        int max;
+        int max = 0;
 
         String play;
         String level;
@@ -30,22 +26,26 @@ public class RandomNumberGuessingGame {
 
             if (level.equals("easy")) {
               max = 99;
-              randomNumber = generator.nextInt(max) + 1;
+              randomNumber = (int)(Math.random()*max + 1);
+              //randomNumber = generator.nextInt(max) + 1;
             }
 
             if (level.equals("medium")) {
               max = 999;
-              randomNumber = generator.nextInt(max) + 1;
+              randomNumber = (int)(Math.random()*max + 1);
+              //randomNumber = generator.nextInt(max) + 1
             }
 
             if (level.equals("difficult")) {
               max = 9999;
-              randomNumber = generator.nextInt(max) + 1;
+              randomNumber = (int)(Math.random()*max + 1);
+              //randomNumber = generator.nextInt(max) + 1;
             }
 
             if (level.equals("hell")){
               max = 99999999;
-              randomNumber = generator.nextInt(max) + 1;
+              randomNumber = (int)(Math.random()*max + 1);
+              //randomNumber = generator.nextInt(max) + 1;
             }
 
 
