@@ -39,56 +39,85 @@ public class fracCalc {
         String term1 = input.substring(0, spacePos);
         String term2 = input.substring(spacePos + 3, input.length());
         System.out.println(term1);
-        System.out.println(term2); //checkpoint1
+        System.out.println(term2);
+        int whole1;
+        int numerator1;
+        int denominator1;
+        int whole2;
+        int numerator2;
+        int denominator2; //checkpoint1
 
-        if (term1.contains("/") = true && term1.contains("_") = true){
-          int slashPos1 = term1.indexOf("/");
-          int underLinePos1 = term1.indexOf("_");
-          String whole1 = term1.substring(0, underLinePos1);
-          String numerator1 = term1.substring(underLinePos1 + 1, slashPos1);
-          String denominator1 = term1.substring(slashPos1 + 1, term1.length());
-          System.out.print(whole1);
-          System.out.print(numerator1);
-          System.out.println(denominator1);
+        if (term1.contains("/") == true && term1.contains("_") == true){
+          int whole1 = whole1(term1);
+          int numerator1 = numerator1(term1);
+          int denominator1 = denominator1(term1);
         }
-        else if (term1.contains("/") = true && term1.contains("_") = false){
-          int slashPos1 = term1.indexOf("/");
-          String numerator1 = term1.substring(underLinePos1 + 1, slashPos1);
-          String denominator1 = term1.substring(slashPos1 + 1, term1.length());
-          System.out.print(numerator1);
-          System.out.println(denominator1);
+        else if (term1.contains("/") == true && term1.contains("_") == false){
+          int numerator1 = numerator2(term1);
+          int denominator1 = denominator2(term1);
         }
-        else if (term1.contains("/") = false && term1.contains("_") = false){
-          String numerator1 = term1;
-          String denominator1 = "1";
-          System.out.print(numerator1);
-          System.out.println(denominator1);
+        else if (term1.contains("/") == false && term1.contains("_") == false){
+          int numerator1 = numerator3(term1);
+          int denominator1 = denominator3(term1);
         }
 
 
-        if (term1.contains("/") = true && term1.contains("_") = true){
-          int slashPos2 = term2.indexOf("/");
-          int underLinePos2 = term2.indexOf("_");
-          String whole2 = term2.substring(0, underLinePos2);
-          String numerator2 = term2.substring(underLinePos2 + 1, slashPos2);
-          String denominator2 = term2.substring(slashPos2 + 1, term2.length());
-          System.out.print(whole2);
-          System.out.print(numerator2);
-          System.out.println(denominator2);
+        if (term1.contains("/") == true && term1.contains("_") == true){
+          int whole2 = whole1(term2);
+          int numerator2 = numerator1(term2);
+          int denominator2 = denominator1(term2);
         }
-        else if (term1.contains("/") = true && term1.contains("_") = false){
-          int slashPos2 = term2.indexOf("/");
-          String numerator2 = term2.substring(underLinePos2 + 1, slashPos2);
-          String denominator2 = term2.substring(slashPos2 + 1, term2.length());
-          System.out.print(numerator2);
-          System.out.println(denominator2);
+        else if (term1.contains("/") == true && term1.contains("_") == false){
+          int numerator2 = numerator2(term2);
+          int denominator2 = denominator2(term2);
         }
-        else if (term1.contains("/") = false && term1.contains("_") = false){
-          String numerator2 = term2;
-          String denominator2 = "1";
-          System.out.print(numerator2);
-          System.out.println(denominator2);
-        }//checkpoint2
+        else if (term1.contains("/") == false && term1.contains("_") == false){
+          int numerator2 = numerator3(term2);
+          int denominator2 = denominator3(term2);
+        }
+      }//checkpoint2
+
+      public static int whole1 (String term) {
+        int underLinePos = term.indexOf("_");
+        String whole = term.substring(0, underLinePos);
+        return whole;
+      }
+
+      public static int numerator1 (String term) {
+        int slashPos = term.indexOf("/");
+        int underLinePos = term.indexOf("_");
+        String numerator = term.substring(underLinePos + 1, slashPos);
+        return numerator;
+      }
+
+      public static int denominator1 (String term) {
+        int slashPos = term.indexOf("/");
+        String denominator = term.substring(slashPos + 1, term.length());
+        return denominator;
+      }
+
+      public static int numerator2 (String term) {
+        int slashPos = term.indexOf("/");
+        String numerator = term.substring(0, slashPos);
+        return numerator;
+      }
+
+      public static int denominator2 (String term) {
+        int slashPos = term.indexOf("/");
+        int denominator = term.substring(slashPos + 1, term.length());
+        return denominator;
+      }
+
+      public static int numerator3 (String term) {
+        int numerator = parseInt(term);
+        return numerator;
+      }
+
+      public static int denominator3 (String term) {
+        int denominator = 1;
+        return denominator;
+      }
+
 
 /*
         String sign = input.substring(spacePos + 1 , spacePos + 2);
@@ -101,8 +130,9 @@ public class fracCalc {
         } else if (sign.equals("/")) {
           division(whole1, numerator1, denominator1, whole2, numerator2, denominator2);
         }
-*/
+
         return "";
+
     }//end produceAnswer method
 
     public static double addition(String x1, String y1, String z1, String x2, String y2, String z2){
@@ -134,6 +164,7 @@ public class fracCalc {
      * @param b - Second integer.
      * @return The GCD.
      */
+/*
     public static int greatestCommonDivisor(int a, int b){
 
       return 0;
@@ -146,9 +177,10 @@ public class fracCalc {
      * @param b - Second integer.
      * @return The LCM.
      */
+/*
     public static int leastCommonMultiple(int a, int b){
 
       return 0;
     }//end leastCommonMultiple
-
+*/
 }//end class
