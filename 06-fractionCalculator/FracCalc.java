@@ -17,45 +17,63 @@ public class fracCalc {
         int spacePos = input.indexOf(" ");
         String term1 = input.substring(0, spacePos);
         String term2 = input.substring(spacePos + 3, input.length());
-        System.out.println(term1);
-        System.out.println(term2);
         String sign = input.substring(spacePos + 1 , spacePos + 2); //checkpoint1
 
-        if (term1.contains("/") == true && term1.contains("_") == true){
-          int whole1 = whole1(term1);
-          int numerator1 = numerator1(term1);
-          int denominator1 = denominator1(term1);
-        }
-        else if (term1.contains("/") == true && term1.contains("_") == false){
-          int whole1 = 0;
-          int numerator1 = numerator2(term1);
-          int denominator1 = denominator2(term1);
-        }
-        else if (term1.contains("/") == false && term1.contains("_") == false){
-          int whole1 = 0;
-          int numerator1 = numerator3(term1);
-          int denominator1 = 1;
-        }
+        System.out.println(term1);
+        System.out.println(term2);
 
+        term1 = input1(term1);
+        term2 = input2(term2);
+        System.out.println(term1);
+        System.out.println(term2);
 
-        if (term1.contains("/") == true && term1.contains("_") == true){
-          int whole2 = whole1(term2);
-          int numerator2 = numerator1(term2);
-          int denominator2 = denominator1(term2);
-        }
-        else if (term1.contains("/") == true && term1.contains("_") == false){
-          int whole2 = 0;
-          int numerator2 = numerator2(term2);
-          int denominator2 = denominator2(term2);
-        }
-        else if (term1.contains("/") == false && term1.contains("_") == false){
-          int whole2 = 0;
-          int numerator2 = numerator3(term2);
-          int denominator2 = 1;
-        }
+        String result = produceAnswer(sign, term1, term2);
+        System.out.println(result);
+      }
 
-        String result = calculate(sign, whole1, numerator1, denominator1, whole2, numerator2, denominator2);
-       }
+      public static String input1(String term){
+        if (term.contains("/") == true && term.contains("_") == true){
+          int whole1 = whole1(term);
+          int numerator1 = numerator1(term);
+          int denominator1 = denominator1(term);
+          String value1 = ((whole1 * denominator1 + numerator1) + "/" + denominator1);
+          return value1;
+        }
+        else if (term.contains("/") == true && term.contains("_") == false){
+          int numerator1 = numerator2(term);
+          int denominator1 = denominator2(term);
+          String value1 = (numerator1 + "/" + denominator1);
+          return value1;
+        }
+        else if (term.contains("/") == false && term.contains("_") == false){
+          int numerator1 = numerator3(term);
+          String value1 = (numerator1 + "/" + 1);
+          return value1;
+        }
+        return "";
+      }
+
+      public static String input2(String term){
+        if (term.contains("/") == true && term.contains("_") == true){
+          int whole2 = whole1(term);
+          int numerator2 = numerator1(term);
+          int denominator2 = denominator1(term);
+          String value2 = ((whole2 * denominator2 + numerator2) + "/" + denominator2);
+          return value2;
+        }
+        else if (term.contains("/") == true && term.contains("_") == false){
+          int numerator2 = numerator2(term);
+          int denominator2 = denominator2(term);
+          String value2 = (numerator2 + "/" + denominator2);
+          return value2;
+        }
+        else if (term.contains("/") == false && term.contains("_") == false){
+          int numerator2 = numerator3(term);
+          String value2 = (numerator2 + "/" + 1);
+          return value2;
+        }
+        return "";
+     }
 
 
       public static int whole1 (String term) {
@@ -91,97 +109,79 @@ public class fracCalc {
 
 
 
-    public static String result(String sign, int x1, int y1, int z1, int x2, int y2, int z2){
-    if (sign.equals("+")) {
-      String result = addition(x1, y1, z1, x2, y2, z2);
-    } else if (sign.equals("-")) {
-      String result = subtraction(x1, y1, z1, x2, y2, z2);
-    } /*else if (sign.equals("*")) {
-      String result = multiplication(x1, y1, z1, x2, y2, z2);
-    } else if (sign.equals("/")) {
-      String result = division(x1, y1, z1, x2, y2, z2);
-    }*/
-      return result;
+    public static String produceAnswer(String sign, String term1, String term2){
+
+      int x1 = numerator2(term1);
+      int y1 = denominator2(term1);
+      int x2 = numerator2(term2);
+      int y2 = denominator2(term2);
+
+      if (sign.equals("+")) {
+        String result = addition(x1, y1, x2, y2);
+        return result;
+
+      } else if (sign.equals("-")) {
+        String result = subtraction(x1, y1, x2, y2);
+        return result;
+
+      } else if (sign.equals("*")) {
+        String result = multiplication(x1, y1, x2, y2);
+        return result;
+
+      } else if (sign.equals("/")) {
+        String result = division(x1, y1, x2, y2);
+        return result;
+      }
+
+      return "";
     }
 
-    public static String addition(int x1, int y1, int z1, int x2, int y2, int z2){
-      if (x1 + x2 != 0){
-      if (z1 != z2){
-        int whole = x1 + x2;
-        int numerator = y1 * z2 + y2 * z1;
-        int denominator = z1 * z2;
-        String result = String.valueOf(whole + " _ " + numerator + " / " + denominator);
+    public static String addition(int x1, int y1, int x2, int y2){
+      if (y1 != y2){
+        int numerator = x1 * y2 + x2 * y1;
+        int denominator = y1 * y2;
+        String result = String.valueOf(numerator + "/" + denominator);
         return result;
       }
       else{
-        int whole = x1 + x2;
-        int numerator = y1 + y2;
-        int denominator = z1;
-        String result = String.valueOf(whole + " _ " + numerator + " / " + denominator);
+        int numerator = x1 + x2;
+        int denominator = y1;
+        String result = String.valueOf(numerator + "/" + denominator);
         return result;
       }
+    }
+
+
+    public static String subtraction(int x1, int y1, int x2, int y2){
+      if (y1 != y2){
+        int numerator = x1 * y2 - x2 * y1;
+        int denominator = y1 * y2;
+        String result = String.valueOf(numerator + "/" + denominator);
+        return result;
       }
-      else {
-        if (z1 != z2){
-          int numerator = y1 * z2 + y2 * z1;
-          int denominator = z1 * z2;
-          String result = String.valueOf(numerator + " / " + denominator);
-          return result;
-        }
-        else{
-          int numerator = y1 + y2;
-          int denominator = z1;
-          String result = String.valueOf(numerator + " / " + denominator);
-          return result;
-      }
+      else{
+        int numerator = x1 - x2;
+        int denominator = y1;
+        String result = String.valueOf(numerator + "/" + denominator);
+        return result;
     }
   }
 
 
-    public static String addition(int x1, int y1, int z1, int x2, int y2, int z2){
-      if (x1 - x2 != 0){
-      if (z1 != z2){
-        int whole = x1 - x2;
-        int numerator = y1 * z2 - y2 * z1;
-        int denominator = z1 * z2;
-        String result = String.valueOf(whole + " _ " + numerator + " / " + denominator);
-        return result;
-      }
-      else{
-        int whole = x1 - x2;
-        int numerator = y1 - y2;
-        int denominator = z1;
-        String result = String.valueOf(whole + " _ " + numerator + " / " + denominator);
-        return result;
-      }
-      }
-      else {
-        if (z1 != z2){
-          int numerator = y1 * z2 - y2 * z1;
-          int denominator = z1 * z2;
-          String result = String.valueOf(numerator + " / " + denominator);
-          return result;
-        }
-        else{
-          int numerator = y1 - y2;
-          int denominator = z1;
-          String result = String.valueOf(numerator + " / " + denominator);
-          return result;
-      }
-    }
-  }
-
-/*
-    public static String multiplication(int x1, int y1, int z1, int x2, int y2, int z2){
-
+    public static String multiplication(int x1, int y1, int x2, int y2){
+      int numerator = x1 * x2;
+      int denominator = y1 * y2;
+      String result = String.valueOf(numerator + "/" + denominator);
       return result;
     }
 
-    public static String division(int x1, int y1, int z1, int x2, int y2, int z2){
-
+    public static String division(int x1, int y1, int x2, int y2){
+      int numerator = x1 * y2;
+      int denominator = y1 * x2;
+      String result = String.valueOf(numerator + "/" + denominator);
       return result;
     }
-*/
+
 
     // TODO: Fill in the space below with helper methods
 
