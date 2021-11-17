@@ -3,27 +3,35 @@ import java.util.*;
 public class FracCalc {
 
     public static void main(String[] args){
-
         Scanner s = new Scanner(System.in);
-        System.out.print("Please enter input equation: ");
-        String input = s.nextLine();
+        int i = 1;
 
-        int spacePos = input.indexOf(" ");
-        String term1 = input.substring(0, spacePos);
-        String term2 = input.substring(spacePos + 3, input.length());
-        String sign = input.substring(spacePos + 1 , spacePos + 2); //checkpoint1
+        while (i != 0){
+          System.out.print("Please enter input equation: ");
+          String input = s.nextLine();
 
-        term1 = input1(term1);
-        term2 = input2(term2);
+          int spacePos = input.indexOf(" ");
+          String term1 = input.substring(0, spacePos);
+          String term2 = input.substring(spacePos + 3, input.length());
+          String sign = input.substring(spacePos + 1 , spacePos + 2); //checkpoint1
 
-        String result = produceAnswer(sign, term1, term2);
-        result = simpification1(result);
-        result = simpification2(result);
-        System.out.println("The result is: " + result);
+          term1 = reformatFra(term1);
+          term2 = reformatFra(term2);
+
+          String result = produceAnswer(sign, term1, term2);
+          result = simpification1(result);
+          result = simpification2(result);
+          System.out.println("The result is: " + result);
+
+          System.out.println("Keep going? y/n");
+          String going = s.nextLine();
+          if (going.equals("n"))
+          System. exit(1);
+       }
       }
 
 
-      public static String input1(String term){
+      public static String reformatFra(String term){
         if (term.contains("/") == true && term.contains("_") == true){
           int whole1 = whole1(term);
           int numerator1 = numerator1(term);
@@ -44,29 +52,6 @@ public class FracCalc {
         }
         return "";
       }
-
-
-      public static String input2(String term){
-        if (term.contains("/") == true && term.contains("_") == true){
-          int whole2 = whole1(term);
-          int numerator2 = numerator1(term);
-          int denominator2 = denominator1(term);
-          String value2 = ((whole2 * denominator2 + numerator2) + "/" + denominator2);
-          return value2;
-        }
-        else if (term.contains("/") == true && term.contains("_") == false){
-          int numerator2 = numerator2(term);
-          int denominator2 = denominator2(term);
-          String value2 = (numerator2 + "/" + denominator2);
-          return value2;
-        }
-        else if (term.contains("/") == false && term.contains("_") == false){
-          int numerator2 = numerator3(term);
-          String value2 = (numerator2 + "/" + 1);
-          return value2;
-        }
-        return "";
-     }
 
 
       public static int whole1 (String term) {
