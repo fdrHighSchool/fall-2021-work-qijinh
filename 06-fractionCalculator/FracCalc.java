@@ -17,8 +17,9 @@ public class FracCalc {
         term2 = input2(term2);
 
         String result = produceAnswer(sign, term1, term2);
-        result = simpification(result);
-        System.out.println(result);
+        result = simpification1(result);
+        result = simpification2(result);
+        System.out.println("The result is: " + result);
       }
 
 
@@ -176,7 +177,7 @@ public class FracCalc {
     }
 
 
-    public static String simpification(String term){
+    public static String simpification1(String term){
       int x1 = numerator2(term);
       int y1 = denominator2(term);
       int gcd = 1;
@@ -185,6 +186,26 @@ public class FracCalc {
           gcd = i; }
       String result = (x1 / gcd) + "/" + (y1 / gcd);
       return result;
-    }//end greatestCommonDivisor method
+    }
+
+    public static String simpification2(String term){
+      int x1 = numerator2(term);
+      int y1 = denominator2(term);
+      if (x1 >= y1){
+        int whole = (int)Math.floor(x1 / y1);
+        int numerator = x1 - whole * y1;
+        if (numerator != 0){
+          String result = whole + "_" + numerator + "/" + y1;
+          return result;
+        }
+        else{
+          String result = whole + "";
+          return result;
+        }
+      }
+      else{
+        return term;
+      }
+    }
 
 }//end class
