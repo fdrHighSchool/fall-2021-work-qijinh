@@ -22,11 +22,12 @@ public class FracCalc {
           result = simpification1(result);
           result = simpification2(result);
           System.out.println("The result is: " + result);
-
           System.out.println("Keep going? y/n");
           String going = s.nextLine();
-          if (going.equals("n"))
+          if (going.equals("n")){
+          System.out.println("Thank you for using Fraction Calculator");
           System. exit(1);
+        }
        }
       }
 
@@ -189,6 +190,11 @@ public class FracCalc {
         }
       }
       else{
+        if (x1 == 0){
+          String result = 0 + "";
+          return result;
+        }
+        else
         return term;
       }
     }
