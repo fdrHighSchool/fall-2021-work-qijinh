@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class FracCalc1 {
+public class FracCalc3 {
 
     public static void main(String[] args){
         Scanner s = new Scanner(System.in);
@@ -10,18 +10,11 @@ public class FracCalc1 {
           System.out.print("Please enter input equation: ");
           String input = s.nextLine();
 
-          int spacePos = input.indexOf(" ");
-          String term1 = input.substring(0, spacePos);
-          String term2 = input.substring(spacePos + 3, input.length());
-          String sign = input.substring(spacePos + 1 , spacePos + 2); //checkpoint1
-
-          term1 = reformatFra(term1);
-          term2 = reformatFra(term2);
-
-          String result = produceAnswer(sign, term1, term2);
+          String result = produceAnswer(input);
           result = simpification1(result);
           result = simpification2(result);
-          System.out.println("The result is: " + result);
+          System.out.println("The result is: " + result);//checkpoint1
+
           System.out.println("Keep going? y/n");
           String going = s.nextLine();
           if (going.equals("n")){
@@ -31,70 +24,23 @@ public class FracCalc1 {
        }
       }
 
-
-      public static String reformatFra(String term){
-        if (term.contains("/") == true && term.contains("_") == true){
-          int whole1 = whole1(term);
-          int numerator1 = numerator1(term);
-          int denominator1 = denominator1(term);
-          String value1 = ((whole1 * denominator1 + numerator1) + "/" + denominator1);
-          return value1;
-        }
-        else if (term.contains("/") == true && term.contains("_") == false){
-          int numerator1 = numerator2(term);
-          int denominator1 = denominator2(term);
-          String value1 = (numerator1 + "/" + denominator1);
-          return value1;
-        }
-        else if (term.contains("/") == false && term.contains("_") == false){
-          int numerator1 = numerator3(term);
-          String value1 = (numerator1 + "/" + 1);
-          return value1;
-        }
-        return "";
+    public static String produceAnswer(String input){
+      int totalTerms = 1;
+      char temp;
+      for (int i = 0; i < input.length(); i++) {
+          temp = input.charAt(i);
+          if (temp == ' ')
+              totalTerms++;
       }
+      totalTerms = totalTerms / 2 + 1;
 
-
-      public static int whole1 (String term) {
-        int underLinePos = term.indexOf("_");
-        int whole =  Integer.parseInt(term.substring(0, underLinePos));
-        return whole;
-      }
-      public static int numerator1 (String term) {
-        int slashPos = term.indexOf("/");
-        int underLinePos = term.indexOf("_");
-        int numerator =  Integer.parseInt(term.substring(underLinePos + 1, slashPos));
-        return numerator;
-      }
-      public static int denominator1 (String term) {
-        int slashPos = term.indexOf("/");
-        int denominator =  Integer.parseInt(term.substring(slashPos + 1, term.length()));
-        return denominator;
-      }
-      public static int numerator2 (String term) {
-        int slashPos = term.indexOf("/");
-        int numerator =  Integer.parseInt(term.substring(0, slashPos));
-        return numerator;
-      }
-      public static int denominator2 (String term) {
-        int slashPos = term.indexOf("/");
-        int denominator =  Integer.parseInt(term.substring(slashPos + 1, term.length()));
-        return denominator;
-      }
-      public static int numerator3 (String term) {
-        int numerator =  Integer.parseInt(term);
-        return numerator;
-      }
-
-
-
-    public static String produceAnswer(String sign, String term1, String term2){
-
+      for (int i = 1; i <= totalTerms; i++){
       int x1 = numerator2(term1);
       int y1 = denominator2(term1);
       int x2 = numerator2(term2);
       int y2 = denominator2(term2);
-
+    }
+    
       if (sign.equals("+")) {
         String result = addition(x1, y1, x2, y2);
         return result;
@@ -115,6 +61,58 @@ public class FracCalc1 {
       return "";
     }
 
+        public static String reformatFra(String term){
+            if (term.contains("/") == true && term.contains("_") == true){
+              int whole1 = whole1(term);
+              int numerator1 = numerator1(term);
+              int denominator1 = denominator1(term);
+              String value1 = ((whole1 * denominator1 + numerator1) + "/" + denominator1);
+              return value1;
+            }
+            else if (term.contains("/") == true && term.contains("_") == false){
+              int numerator1 = numerator2(term);
+              int denominator1 = denominator2(term);
+              String value1 = (numerator1 + "/" + denominator1);
+              return value1;
+            }
+            else if (term.contains("/") == false && term.contains("_") == false){
+              int numerator1 = numerator3(term);
+              String value1 = (numerator1 + "/" + 1);
+              return value1;
+            }
+            return "";
+          }
+
+        public static int whole1 (String term) {
+            int underLinePos = term.indexOf("_");
+            int whole =  Integer.parseInt(term.substring(0, underLinePos));
+            return whole;
+          }
+          public static int numerator1 (String term) {
+            int slashPos = term.indexOf("/");
+            int underLinePos = term.indexOf("_");
+            int numerator =  Integer.parseInt(term.substring(underLinePos + 1, slashPos));
+            return numerator;
+          }
+          public static int denominator1 (String term) {
+            int slashPos = term.indexOf("/");
+            int denominator =  Integer.parseInt(term.substring(slashPos + 1, term.length()));
+            return denominator;
+          }
+          public static int numerator2 (String term) {
+            int slashPos = term.indexOf("/");
+            int numerator =  Integer.parseInt(term.substring(0, slashPos));
+            return numerator;
+          }
+          public static int denominator2 (String term) {
+            int slashPos = term.indexOf("/");
+            int denominator =  Integer.parseInt(term.substring(slashPos + 1, term.length()));
+            return denominator;
+          }
+          public static int numerator3 (String term) {
+            int numerator =  Integer.parseInt(term);
+            return numerator;
+          }
 
     public static String addition(int x1, int y1, int x2, int y2){
       if (y1 != y2){
@@ -199,4 +197,4 @@ public class FracCalc1 {
       }
     }
 
-}//end class
+}
