@@ -10,6 +10,11 @@ public class FracCalc2 {
           System.out.print("Please enter input equation: ");
           String input = s.nextLine();
 
+          if (input.equals("quit")){
+            System.out.println("Thank you for using Fraction Calculator");
+            System. exit(1);
+          }
+
           int spacePos1 = input.indexOf(" ");
           int spacePos2 = input.indexOf(" ", spacePos1 + 3);
 
@@ -23,9 +28,12 @@ public class FracCalc2 {
             term2 = reformatFra(term2);
 
             String result = produceAnswer1(sign1, term1, term2);
-            result = simpification1(result);
-            result = simpification2(result);
-            System.out.println("The result is: " + result);//checkpoint1
+            if (!result.equals("Invalid Entery! (0 can't be the denominator)")){
+              System.out.println("The result is: " + result);
+            }
+            else{
+              System.out.println("Invalid Entery! (0 can't be the denominator)");
+            }//checkpoint1
           }
           else if (spacePos2 != -1){
             String term1 = input.substring(0, spacePos1);
@@ -40,37 +48,33 @@ public class FracCalc2 {
             term3 = reformatFra(term3);
 
             String result = produceAnswer2(sign1, sign2, term1, term2, term3);
-            result = simpification1(result);
-            result = simpification2(result);
-            System.out.println("The result is: " + result);//checkpoint1
+            if (!result.equals("Invalid Entery! (0 can't be the denominator)")){
+              System.out.println("The result is: " + result);
+            }
+            else{
+              System.out.println("Invalid Entery! (0 can't be the denominator)");
+            }//checkpoint1
 
           }
-
-          System.out.println("Keep going? y/n");
-          String going = s.nextLine();
-          if (going.equals("n")){
-          System.out.println("Thank you for using Fraction Calculator");
-          System. exit(1);
-        }
        }
       }
 
 
       public static String reformatFra(String term){
-        if (term.contains("/") == true && term.contains("_") == true){
+        if ((term.contains("/")) && (term.contains("_"))){
           int whole1 = whole1(term);
           int numerator1 = numerator1(term);
-          int denominator1 = denominator1(term);
+          int denominator1 = denominator2(term);
           String value1 = ((whole1 * denominator1 + numerator1) + "/" + denominator1);
           return value1;
         }
-        else if (term.contains("/") == true && term.contains("_") == false){
+        else if ((term.contains("/")) && !(term.contains("_"))){
           int numerator1 = numerator2(term);
           int denominator1 = denominator2(term);
           String value1 = (numerator1 + "/" + denominator1);
           return value1;
         }
-        else if (term.contains("/") == false && term.contains("_") == false){
+        else if (!(term.contains("/")) && !(term.contains("_"))){
           int numerator1 = numerator3(term);
           String value1 = (numerator1 + "/" + 1);
           return value1;
@@ -89,11 +93,6 @@ public class FracCalc2 {
         int underLinePos = term.indexOf("_");
         int numerator =  Integer.parseInt(term.substring(underLinePos + 1, slashPos));
         return numerator;
-      }
-      public static int denominator1 (String term) {
-        int slashPos = term.indexOf("/");
-        int denominator =  Integer.parseInt(term.substring(slashPos + 1, term.length()));
-        return denominator;
       }
       public static int numerator2 (String term) {
         int slashPos = term.indexOf("/");
@@ -118,20 +117,32 @@ public class FracCalc2 {
       int x2 = numerator2(term2);
       int y2 = denominator2(term2);
 
+      if (y1 == 0 || y2 == 0){
+        return "Invalid Entery! (0 can't be the denominator)";
+      }
+
       if (sign.equals("+")) {
         String result = addition(x1, y1, x2, y2);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
 
       } else if (sign.equals("-")) {
         String result = subtraction(x1, y1, x2, y2);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
 
       } else if (sign.equals("*")) {
         String result = multiplication(x1, y1, x2, y2);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
 
       } else if (sign.equals("/")) {
         String result = division(x1, y1, x2, y2);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
 
@@ -146,11 +157,17 @@ public class FracCalc2 {
       int x3 = numerator2(term3);
       int y3 = denominator2(term3);
 
+      if (y1 == 0 || y2 == 0){
+        return "Invalid Entery! (0 can't be the denominator)";
+      }
+
       if (sign1.equals("+") && sign2.equals("+")) {
         String result = addition(x1, y1, x2, y2);
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = addition(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("+") && sign2.equals("-")) {
@@ -158,6 +175,8 @@ public class FracCalc2 {
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = subtraction(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("+") && sign2.equals("*")) {
@@ -165,6 +184,8 @@ public class FracCalc2 {
         x2 = numerator2(result);
         y2 = denominator2(result);
         result = addition(x1, y1, x2, y2);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("+") && sign2.equals("/")) {
@@ -172,6 +193,8 @@ public class FracCalc2 {
         x2 = numerator2(result);
         y2 = denominator2(result);
         result = addition(x1, y1, x2, y2);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
 
@@ -180,6 +203,8 @@ public class FracCalc2 {
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = addition(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("-") && sign2.equals("-")) {
@@ -187,6 +212,8 @@ public class FracCalc2 {
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = subtraction(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("-") && sign2.equals("*")) {
@@ -194,6 +221,8 @@ public class FracCalc2 {
         x2 = numerator2(result);
         y2 = denominator2(result);
         result = subtraction(x1, y1, x2, y2);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("-") && sign2.equals("/")) {
@@ -201,6 +230,8 @@ public class FracCalc2 {
         x2 = numerator2(result);
         y2 = denominator2(result);
         result = subtraction(x1, y1, x2, y2);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
 
@@ -209,6 +240,8 @@ public class FracCalc2 {
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = addition(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("*") && sign2.equals("-")) {
@@ -216,6 +249,8 @@ public class FracCalc2 {
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = subtraction(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("*") && sign2.equals("*")) {
@@ -223,6 +258,8 @@ public class FracCalc2 {
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = multiplication(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("*") && sign2.equals("/")) {
@@ -230,6 +267,8 @@ public class FracCalc2 {
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = division(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
 
@@ -238,6 +277,8 @@ public class FracCalc2 {
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = addition(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("/") && sign2.equals("-")) {
@@ -245,6 +286,8 @@ public class FracCalc2 {
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = subtraction(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("/") && sign2.equals("*")) {
@@ -252,6 +295,8 @@ public class FracCalc2 {
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = multiplication(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       else if (sign1.equals("/") && sign2.equals("/")) {
@@ -259,6 +304,8 @@ public class FracCalc2 {
         x1 = numerator2(result);
         y1 = denominator2(result);
         result = division(x1, y1, x3, y3);
+        result = simpification1(result);
+        result = simpification2(result);
         return result;
       }
       return "";
