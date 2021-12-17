@@ -3,16 +3,42 @@ import java.util.*;
 public class Array{
 
   public static void main(String[] arg){
-    int[] arr = new int[10];
-    for(int i = 0; i < arr.length; i++){
-         arr[i] = (int)(Math.random()*99) + 1;
+    int[] arr1 = new int[10], arr2 = new int[10];
+    int min, max, maxLoc;
+
+    Scanner s = new Scanner(System.in);
+    System.out.println("Please enter ten integers: ");
+    for (int i = 0; i < arr1.length; i++){
+          System.out.print((i + 1) + "=> ");
+          arr1[i] = s.nextInt();
       }
 
-    System.out.println("List: " + Arrays.toString(arr));
-    System.out.println("Mean: " + mean(arr));
-    System.out.println("Median: " + median(arr));
-    System.out.println("Mode: " + mode(arr));
-    System.out.println("Range: " + range(arr));
+    /*
+    for(int i = 0; i < arr1.length; i++){
+          arr1[i] = (int)(Math.random()*99) + 1;
+      }
+    */
+
+    for(int i = 0; i < arr1.length; i++){
+          max = 0;
+          min = 0;
+
+          for(int j = 0; j < arr1.length; j++){
+              if(arr1[i] > arr1[j]){
+                min = arr1[j];
+                max = arr1[i];
+              }
+              arr2[i] = min;
+              arr2[j] = max;
+          }
+      }
+
+    System.out.println("List: " + Arrays.toString(arr1));
+    System.out.println("Reorder: " + Arrays.toString(arr2));
+    System.out.println("Mean: " + mean(arr2));
+    System.out.println("Median: " + median(arr2));
+    System.out.println("Mode: " + mode(arr2));
+    System.out.println("Range: " + range(arr2));
   }
 
   public static double mean(int[] arr) {
@@ -25,8 +51,7 @@ public class Array{
     return total / arr.length;
   }
 
-  public static int mode(int[] arr){
-    Arrays.sort(arr);
+  public static String mode(int[] arr){
     int number1 = 0;
     int number2 = 0;
     int time1 =0;
@@ -52,17 +77,18 @@ public class Array{
         }
     }
 
-    return number2;
+      if(number2 != 0) return number2 + "";
+      else if(number2 == 0) return "no mode";
+
+      return "";
   }
 
   public static int median(int[] arr){
-    Arrays.sort(arr);
     int median = (arr[arr.length / 2 - 1] + arr[arr.length / 2 + 1]) / 2;
     return median;
   }
 
   public static int range(int[] arr){
-    Arrays.sort(arr);
     int range = (arr[arr.length - 1] - arr[0]);
     return range;
   }
