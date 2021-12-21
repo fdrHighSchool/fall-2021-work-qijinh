@@ -3,42 +3,37 @@ import java.util.*;
 public class Array{
 
   public static void main(String[] arg){
-    int[] arr1 = new int[10], arr2 = new int[10];
-    int min, max, maxLoc;
+    int[] arr = new int[10];
+    int min, minLoc, temp;
 
     Scanner s = new Scanner(System.in);
     System.out.println("Please enter ten integers: ");
-    for (int i = 0; i < arr1.length; i++){
+    for (int i = 0; i < arr.length; i++){
           System.out.print((i + 1) + "=> ");
-          arr1[i] = s.nextInt();
+          arr[i] = s.nextInt();
       }
 
-    /*
-    for(int i = 0; i < arr1.length; i++){
-          arr1[i] = (int)(Math.random()*99) + 1;
-      }
-    */
+    for(int i = 0; i < arr.length; i++){
+          min = arr[i];
+          minLoc = i;
+          temp = arr[i];
 
-    for(int i = 0; i < arr1.length; i++){
-          max = 0;
-          min = 0;
-
-          for(int j = 0; j < arr1.length; j++){
-              if(arr1[i] > arr1[j]){
-                min = arr1[j];
-                max = arr1[i];
+          for(int j = i; j < arr.length; j++){
+              if(min > arr[j]){
+                min = arr[j];
+                minLoc = j;
               }
-              arr2[i] = min;
-              arr2[j] = max;
           }
+          arr[i] = min;
+          arr[minLoc] = temp;
+          System.out.println(min+" "+minLoc+" "+arr[i]+" "+ arr[minLoc]);
       }
 
-    System.out.println("List: " + Arrays.toString(arr1));
-    System.out.println("Reorder: " + Arrays.toString(arr2));
-    System.out.println("Mean: " + mean(arr2));
-    System.out.println("Median: " + median(arr2));
-    System.out.println("Mode: " + mode(arr2));
-    System.out.println("Range: " + range(arr2));
+    System.out.println("List: " + Arrays.toString(arr));
+    System.out.println("Mean: " + mean(arr));
+    System.out.println("Median: " + median(arr));
+    System.out.println("Mode: " + mode(arr));
+    System.out.println("Range: " + range(arr));
   }
 
   public static double mean(int[] arr) {
