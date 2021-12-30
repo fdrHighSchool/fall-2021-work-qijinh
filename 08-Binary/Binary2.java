@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Binary {
+public class Binary2 {
 
   public static void main(String[] arg){
 
@@ -47,21 +47,18 @@ public class Binary {
 
   public static String decimalToBinary(int num){
     String bin = "";
-    int pow = 1;
-    double pow2 = 0.0;
+    int binary[] = new int[40];
+    int index = 0;
 
-    for (int i = num - 1; i >= 0; i--){
-      pow2 = Math.pow(2, i);
-      pow = (int)Math.round(pow2);
-
-      if (num >= pow){
-        bin += "1";
-        num = num - pow;
-      }
-      else if (num < pow && bin.contains("1")){
-        bin += "0";
-      }
+    while(num > 0){
+      binary[index++] = num % 2;
+      num = num / 2;
     }
+
+    for(int i = index-1; i >= 0; i--){
+      bin += binary[i];
+    }
+
     return bin;
   }
 }
