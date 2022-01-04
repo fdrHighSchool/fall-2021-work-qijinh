@@ -5,34 +5,40 @@ public class Exam {
   public static void main (String[] args){
     Scanner s = new Scanner(System.in);
 
-    int[] sampleStudent = new int[5];
+    int[] sampleStudent1 = new int[5];
+    int[] sampleStudent2 = new int[6];
 
-    for(int i = 0; i < sampleStudent.length; i++) {
-      sampleStudent[i] = (int)(Math.random() * 46) + 55;
+    for(int i = 0; i < sampleStudent1.length; i++) {
+      sampleStudent1[i] = (int)(Math.random() * 46) + 55;
+      sampleStudent2[i] = sampleStudent1[i];
     }
 
-    System.out.println(Arrays.toString(sampleStudent));
-    sixthGrade(sampleStudent);
+    System.out.println(Arrays.toString(sampleStudent1));
+
+    sixthGrade(sampleStudent1, sampleStudent2);
   }
 
 
-  public static void sixthGrade(int[] sampleStudent){
+  public static void sixthGrade(int[] sampleStudent1, int[] sampleStudent2){
     int temp1 = 0;
     int temp2 = (int)(Math.random() * 46) + 55;
 
-    for (int i = 0; i <= sampleStudent.length - 1; i++){
-      for (int j = i + 1; j <= sampleStudent.length - 1; j++){
-        if (sampleStudent[i] > sampleStudent[j]){
-          temp1 = sampleStudent[i];
-          sampleStudent[i] = sampleStudent[j];
-          sampleStudent[j] = temp1;
+    sampleStudent2[sampleStudent1.length] = temp2;
+    System.out.println(Arrays.toString(sampleStudent2));
+
+    for (int i = 0; i <= sampleStudent1.length - 1; i++){
+      for (int j = i + 1; j <= sampleStudent1.length - 1; j++){
+        if (sampleStudent1[i] > sampleStudent1[j]){
+          temp1 = sampleStudent1[i];
+          sampleStudent1[i] = sampleStudent1[j];
+          sampleStudent1[j] = temp1;
         }
       }
     }
 
-    System.out.println(Arrays.toString(sampleStudent));
-    sampleStudent[0] = temp2;
-    System.out.println(Arrays.toString(sampleStudent));
+    System.out.println("6th Grade: " + temp2);
+    sampleStudent1[0] = temp2;
+    System.out.println(Arrays.toString(sampleStudent1));
   }
 
 }
