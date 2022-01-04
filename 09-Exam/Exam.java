@@ -6,7 +6,7 @@ public class Exam {
     Scanner s = new Scanner(System.in);
 
     int[] sampleStudent1 = new int[5];
-    int[] sampleStudent2 = new int[6];
+    int[] sampleStudent2 = new int[sampleStudent1.length + 1];
 
     for(int i = 0; i < sampleStudent1.length; i++) {
       sampleStudent1[i] = (int)(Math.random() * 46) + 55;

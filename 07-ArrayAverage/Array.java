@@ -26,7 +26,6 @@ public class Array{
           }
           arr[i] = min;
           arr[minLoc] = temp;
-          System.out.println(min+" "+minLoc+" "+arr[i]+" "+ arr[minLoc]);
       }
 
     System.out.println("List: " + Arrays.toString(arr));
