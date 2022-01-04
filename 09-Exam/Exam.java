@@ -37,6 +37,7 @@ public class Exam {
     }
 
     System.out.println("6th Grade: " + temp2);
+    if (sampleStudent1[0] < temp2)
     sampleStudent1[0] = temp2;
     System.out.println(Arrays.toString(sampleStudent1));
   }
