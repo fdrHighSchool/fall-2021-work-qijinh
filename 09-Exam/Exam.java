@@ -23,7 +23,7 @@ public class Exam {
     int temp1 = 0;
     int temp2 = (int)(Math.random() * 46) + 55;
 
-    sampleStudent2[sampleStudent1.length] = temp2;
+    sampleStudent2[sampleStudent2.length - 1] = temp2;
     System.out.println(Arrays.toString(sampleStudent2));
 
     for (int i = 0; i <= sampleStudent1.length - 1; i++){
