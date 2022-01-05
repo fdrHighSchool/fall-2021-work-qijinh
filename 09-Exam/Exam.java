@@ -20,25 +20,26 @@ public class Exam {
 
 
   public static void sixthGrade(int[] sampleStudent1, int[] sampleStudent2){
-    int temp1 = 0;
-    int temp2 = (int)(Math.random() * 46) + 55;
+    int min = 1000;
+    int i = 0;
+    int j = 0;
+    int temp = (int)(Math.random() * 46) + 55;
 
-    sampleStudent2[sampleStudent2.length - 1] = temp2;
+    sampleStudent2[sampleStudent2.length - 1] = temp;
     System.out.println(Arrays.toString(sampleStudent2));
 
-    for (int i = 0; i <= sampleStudent1.length - 1; i++){
-      for (int j = i + 1; j <= sampleStudent1.length - 1; j++){
-        if (sampleStudent1[i] > sampleStudent1[j]){
-          temp1 = sampleStudent1[i];
-          sampleStudent1[i] = sampleStudent1[j];
-          sampleStudent1[j] = temp1;
-        }
+    for (int grade : sampleStudent1){
+      if (grade < min){
+        min = grade;
+        j = i;
       }
+      i++;
     }
 
-    System.out.println("6th Grade: " + temp2);
-    if (sampleStudent1[0] < temp2)
-    sampleStudent1[0] = temp2;
+
+    System.out.println("6th Grade: " + temp);
+    if (temp > min)
+    sampleStudent1[j] = temp;
     System.out.println(Arrays.toString(sampleStudent1));
   }
 
