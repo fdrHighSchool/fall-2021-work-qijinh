@@ -6,9 +6,17 @@ public class SelfDivisor {
 
     Scanner s = new Scanner(System.in);
     System.out.print("Type in your number: ");
-    int num = s.nextInt();
+    int num1 = s.nextInt();
 
-    System.out.println(isSelfDivisor(num));
+    System.out.println("Self-Divisor: " + isSelfDivisor(num1));
+
+    System.out.println();
+    System.out.print("Type in the starting number: ");
+    int start = s.nextInt();
+    System.out.print("Type in the time: ");
+    int num2 = s.nextInt();
+
+    System.out.println("First Number Self-Divisor: " + Arrays.toString(firstNumSelfDivisors(start, num2)));
 
   }
 
@@ -27,6 +35,26 @@ public class SelfDivisor {
     }
 
     return true;
+  }
+
+  public static int[] firstNumSelfDivisors (int start, int num) {
+
+    int[] list = new int[num];
+    int k = 0;
+
+    for (int i = 0; i < num ; i ++) {
+        for (int j = start; j < num * start; j++) {
+          if (isSelfDivisor(j) != false){
+            list[k] = j;
+            start = j + 1;
+            j = num * start;
+          }
+        }
+        k++;
+    }
+
+    return list;
+
   }
 
 }
