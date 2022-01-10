@@ -43,11 +43,11 @@ public class SelfDivisor {
     int k = 0;
 
     for (int i = 0; i < num ; i ++) {
-        for (int j = start; j < num * start; j++) {
+        for (int j = start; j < num * start * 10; j++) {
           if (isSelfDivisor(j) != false){
             list[k] = j;
             start = j + 1;
-            j = num * start;
+            j = num * start * 10;
           }
         }
         k++;
