@@ -54,7 +54,6 @@ public class SelfDivisor {
     }
 
     return list;
-
   }
 
 }
