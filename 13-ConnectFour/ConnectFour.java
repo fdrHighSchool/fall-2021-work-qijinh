@@ -7,15 +7,22 @@ public class ConnectFour {
     String[][] board = new String[6][7];
 
     fillBoard(board);
+    displayBoard(board);
 
     boolean result = false;
     while (result != true){
-      displayBoard(board);
       player1(board);
-
       displayBoard(board);
+      if (result(board).equals("Player 1 win!") || result(board).equals("Player 2 win!")){
+        System.out.println(result(board));
+        System.exit(0);
+      }
       player2(board);
-
+      displayBoard(board);
+      if (result(board).equals("Player 1 win!") || result(board).equals("Player 2 win!")){
+        System.out.println(result(board));
+        System.exit(0);
+      }
     }
   } // end main method
 
@@ -28,7 +35,7 @@ public class ConnectFour {
   }
 
   public static void displayBoard(String[][] board) {
-    System.out.println("\033[H\033[2J"); 
+    System.out.println("\033[H\033[2J");
     for(int row = 0; row < board.length; row++) {
       for(int col = 0; col < board[row].length; col++) {
         System.out.print(board[row][col] + " ");
@@ -86,5 +93,99 @@ public class ConnectFour {
     }
     return board;
   }
+
+  public static String result (String[][] board) {
+
+    String result;
+    if (connectHor1(board) == true || connectVer1(board) == true /*|| connectDia1(board) == true*/) {
+      result = "Player 1 win!";
+      return result;
+    }
+
+    if (connectHor2(board) == true || connectVer2(board) == true /*|| connectDia2(board) == true*/) {
+      result = "Player 2 win!";
+      return result;
+    }
+
+    return "";
+  }
+
+  public static boolean connectHor1 (String[][] board) {
+    boolean connect = false;
+    for (int i = board.length - 1; i >= 0; i--) {
+      for (int j = 0; j < 4; j++){
+        if (board[i][j].equals(board[i][j + 1]) && board[i][j + 1].equals(board[i][j + 2]) && board[i][j + 2].equals(board[i][j + 3]) && board[i][j + 3].equals("[x]"))
+        connect = true;
+      }
+    }
+    return connect;
+  }
+
+  public static boolean connectHor2 (String[][] board) {
+    boolean connect = false;
+    for (int i = board.length - 1; i >= 0; i--) {
+      for (int j = 0; j < 4; j++){
+        if (board[i][j].equals(board[i][j + 1]) && board[i][j + 1].equals(board[i][j + 2]) && board[i][j + 2].equals(board[i][j + 3]) && board[i][j + 3].equals("[o]"))
+        connect = true;
+      }
+    }
+    return connect;
+  }
+
+  public static boolean connectVer1 (String[][] board) {
+    boolean connect = false;
+    for (int j = 0; j < board[0].length - 1; j++) {
+      for (int i = board.length - 1; i >= 3; i--)
+      if (board[i][j].equals(board[i - 1][j]) && board[i - 1][j].equals(board[i - 2][j]) && board[i - 2][j].equals(board[i - 3][j]) && board[i - 3][j].equals("[x]"))
+        connect = true;
+    }
+    return connect;
+  }
+
+  public static boolean connectVer2 (String[][] board) {
+    boolean connect = false;
+    for (int j = 0; j < board[0].length - 1; j++) {
+      for (int i = board.length - 1; i >= 3; i--) {
+        if (board[i][j].equals(board[i - 1][j]) && board[i - 1][j].equals(board[i - 2][j]) && board[i - 2][j].equals(board[i - 3][j]) && board[i - 3][j].equals("[o]"))
+        connect = true;
+      }
+    }
+    return connect;
+  }
+/*
+  public static boolean connectDia1 (String[][] board) {
+    boolean connect = false;
+    for (int i = board.length - 1; i >= 3; i--) {
+      for (int j = 3; j < board[i].length; j--){
+        if (board[i][j].equals(board[i - 1][j - 1]) && board[i - 1][j - 1].equals(board[i - 2][j - 2]) && board[i - 2][j - 2].equals(board[i - 3][j - 3]) && board[i - 2][j - 2].equals("[x]"))
+        connect = true;
+        System.out.println(i+" "+j);
+      }
+    }
+    for (int i = board.length - 1; i >= 3; i--) {
+      for (int j = board[i].length - 4; j >= 0; j--){
+        if (board[i][j].equals(board[i + 1][j + 1]) && board[i + 1][j + 1].equals(board[i + 2][j + 2]) && board[i + 2][j + 2].equals(board[i + 3][j + 3]) && board[i + 3][j + 3].equals("[x]"))
+        connect = true;
+      }
+    }
+    return connect;
+  }
+
+  public static boolean connectDia2 (String[][] board) {
+    boolean connect = false;
+    for (int i = board.length - 1; i >= 3; i--) {
+      for (int j = 3; j < board[i].length; j--){
+        if (board[i][j].equals(board[i - 1][j - 1]) && board[i - 1][j - 1].equals(board[i - 2][j - 2]) && board[i - 2][j - 2].equals(board[i - 3][j - 3]) && board[i - 2][j - 2].equals("[o]"))
+        connect = true;
+      }
+    }
+    for (int i = board.length - 1; i >= 3; i--) {
+      for (int j = board[i].length - 4; j >= 0; j--){
+        if (board[i][j].equals(board[i + 1][j + 1]) && board[i + 1][j + 1].equals(board[i + 2][j + 2]) && board[i + 2][j + 2].equals(board[i + 3][j + 3]) && board[i + 3][j + 3].equals("[o]"))
+        connect = true;
+      }
+    }
+    return connect;
+  }*/
 
 } // end class
