@@ -15,15 +15,20 @@ public class ConnectFour {
       displayBoard(board);
       if (result(board).equals("Player 1 win!") || result(board).equals("Player 2 win!")){
         System.out.println(result(board));
-        System.exit(0);
+        System.out.println("Thanks for playing!");
+        System.out.println();
+        break;
       }
       player2(board);
       displayBoard(board);
       if (result(board).equals("Player 1 win!") || result(board).equals("Player 2 win!")){
         System.out.println(result(board));
-        System.exit(0);
+        System.out.println("Thanks for playing!");
+        System.out.println();
+        break;
       }
     }
+
   } // end main method
 
   public static void fillBoard(String[][] board) {
@@ -97,12 +102,12 @@ public class ConnectFour {
   public static String result (String[][] board) {
 
     String result;
-    if (connectHor1(board) == true || connectVer1(board) == true /*|| connectDia1(board) == true*/) {
+    if (connectHor1(board) == true || connectVer1(board) == true || connectDia1(board) == true) {
       result = "Player 1 win!";
       return result;
     }
 
-    if (connectHor2(board) == true || connectVer2(board) == true /*|| connectDia2(board) == true*/) {
+    if (connectHor2(board) == true || connectVer2(board) == true || connectDia2(board) == true) {
       result = "Player 2 win!";
       return result;
     }
@@ -152,19 +157,18 @@ public class ConnectFour {
     }
     return connect;
   }
-/*
+
   public static boolean connectDia1 (String[][] board) {
     boolean connect = false;
     for (int i = board.length - 1; i >= 3; i--) {
-      for (int j = 3; j < board[i].length; j--){
+      for (int j = 3; j < board[i].length; j++){
         if (board[i][j].equals(board[i - 1][j - 1]) && board[i - 1][j - 1].equals(board[i - 2][j - 2]) && board[i - 2][j - 2].equals(board[i - 3][j - 3]) && board[i - 2][j - 2].equals("[x]"))
         connect = true;
-        System.out.println(i+" "+j);
       }
     }
     for (int i = board.length - 1; i >= 3; i--) {
       for (int j = board[i].length - 4; j >= 0; j--){
-        if (board[i][j].equals(board[i + 1][j + 1]) && board[i + 1][j + 1].equals(board[i + 2][j + 2]) && board[i + 2][j + 2].equals(board[i + 3][j + 3]) && board[i + 3][j + 3].equals("[x]"))
+        if (board[i][j].equals(board[i - 1][j + 1]) && board[i - 1][j + 1].equals(board[i - 2][j + 2]) && board[i - 2][j + 2].equals(board[i - 3][j + 3]) && board[i - 3][j + 3].equals("[x]"))
         connect = true;
       }
     }
@@ -174,18 +178,18 @@ public class ConnectFour {
   public static boolean connectDia2 (String[][] board) {
     boolean connect = false;
     for (int i = board.length - 1; i >= 3; i--) {
-      for (int j = 3; j < board[i].length; j--){
+      for (int j = 3; j < board[i].length; j++){
         if (board[i][j].equals(board[i - 1][j - 1]) && board[i - 1][j - 1].equals(board[i - 2][j - 2]) && board[i - 2][j - 2].equals(board[i - 3][j - 3]) && board[i - 2][j - 2].equals("[o]"))
         connect = true;
       }
     }
     for (int i = board.length - 1; i >= 3; i--) {
       for (int j = board[i].length - 4; j >= 0; j--){
-        if (board[i][j].equals(board[i + 1][j + 1]) && board[i + 1][j + 1].equals(board[i + 2][j + 2]) && board[i + 2][j + 2].equals(board[i + 3][j + 3]) && board[i + 3][j + 3].equals("[o]"))
+        if (board[i][j].equals(board[i - 1][j + 1]) && board[i - 1][j + 1].equals(board[i - 2][j + 2]) && board[i - 2][j + 2].equals(board[i - 3][j + 3]) && board[i - 3][j + 3].equals("[o]"))
         connect = true;
       }
     }
     return connect;
-  }*/
+  }
 
 } // end class
