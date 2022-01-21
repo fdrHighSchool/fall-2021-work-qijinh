@@ -29,7 +29,7 @@ public class ConnectFour {
       }
     }
 
-  } // end main method
+  }
 
   public static void fillBoard(String[][] board) {
     for(int row = 0; row < board.length; row++) {
