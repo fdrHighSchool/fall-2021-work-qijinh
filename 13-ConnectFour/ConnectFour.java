@@ -10,8 +10,10 @@ public class ConnectFour {
     displayBoard(board);
 
     boolean result = false;
+    int round = 0;
     while (result != true){
-      player1(board);
+      round++;
+      player(board, round);
       displayBoard(board);
       if (result(board).equals("Player 1 win!") || result(board).equals("Player 2 win!")){
         System.out.println(result(board));
@@ -19,7 +21,9 @@ public class ConnectFour {
         System.out.println();
         break;
       }
-      player2(board);
+
+      round++;
+      player(board, round);
       displayBoard(board);
       if (result(board).equals("Player 1 win!") || result(board).equals("Player 2 win!")){
         System.out.println(result(board));
@@ -49,50 +53,54 @@ public class ConnectFour {
     }
   }
 
-  public static void player1 (String[][] board){
+  public static void player (String[][] board, int y){
     Scanner s = new Scanner(System.in);
 
-    int x1 = 0;
-    System.out.println("Player 1 drop your piece at: ");
-    x1 = s.nextInt();
-    if (board[0][x1 - 1] != "[ ]"){
-      System.out.println("Invalid entry, please drop your piece at another column: ");
+    if (y%2 == 1){
+
+      int x1 = 0;
+
+      // ask the user for a column
+      System.out.println("Player 1 drop your piece at: ");
       x1 = s.nextInt();
-      pieceDrop1(board, x1 - 1);
-    }
-    else
-      pieceDrop1(board, x1 - 1);
-  }
 
-  public static void player2 (String[][] board){
-    Scanner s = new Scanner(System.in);
-
-    int x2 = 0;
-    System.out.println("Player 2 drop your piece at: ");
-    x2 = s.nextInt();
-    if (board[0][x2 - 1] != "[ ]"){
-      System.out.println("Invalid entry, please drop your piece at another column: ");
-      x2 = s.nextInt();
-      pieceDrop2(board, x2 - 1);
-    }
-    else
-      pieceDrop2(board, x2 - 1);
-  }
-
-  public static String[][] pieceDrop1 (String[][] board, int x) {
-    for (int i = board.length - 1; i >= 0; i--){
-      if (board[i][x] == "[ ]"){
-        board[i][x] = "[x]";
-        break;
+      // if that entry is invalid, then ask again...
+      // and ask again until the entry is valid
+      // invalid means the column value is too large or the columm is filled up
+      while (x1 > board[0].length || board[0][x1 - 1] != "[ ]") {
+        System.out.println("Invalid entry, please drop your piece at another column: ");
+        x1 = s.nextInt();
       }
+
+      // once the while loop breaks, we know the user has entered a valid column
+      // so play the round
+      pieceDrop(board, x1 - 1, y);
     }
-    return board;
+
+    if (y%2 == 0){
+
+      int x2 = 0;
+
+      System.out.println("Player 2 drop your piece at: ");
+      x2 = s.nextInt();
+
+      while (x2 > board[0].length || board[0][x2 - 1] != "[ ]") {
+        System.out.println("Invalid entry, please drop your piece at another column: ");
+        x2 = s.nextInt();
+      }
+
+      pieceDrop(board, x2 - 1, y);
+    }
+
   }
 
-  public static String[][] pieceDrop2 (String[][] board, int x) {
+  public static String[][] pieceDrop (String[][] board, int x, int y) {
     for (int i = board.length - 1; i >= 0; i--){
       if (board[i][x] == "[ ]"){
-        board[i][x] = "[o]";
+        if (y%2 == 1)
+          board[i][x] = "[x]";
+        if (y%2 == 0)
+          board[i][x] = "[o]";
         break;
       }
     }
